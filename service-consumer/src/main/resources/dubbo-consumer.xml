@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+<!-- 提供方应用信息，用于计算依赖关系 -->
+<dubbo:application name="service-consumer"   owner="hhhh">
+    <!--运维使用的端口，如果provider启动后会默认占用22222这个端口，因此该项目启动会提示该端口被占用，不影响启动，我们可以在这指定其他端口-->
+    <dubbo:parameter key="qos.port" value="23232"></dubbo:parameter>
+</dubbo:application>
+
+<!-- 使用multicast广播注册中心暴露服务地址 -->
+<dubbo:registry address="zookeeper://106.75.177.44:2181" />
+<!--timeout：调用超时
+mock:当调用接口超时时，会调用mock类返回mock定义的返回值
+reties：请求失败后的重试次数：（注意：需要保证接口幂等）-->
+    <dubbo:consumer  timeout="1000" mock="true" retries="3"/>
+<dubbo:protocol name="dubbo"/>
+<!--mock也可以在某个service引用上定义：类包名规则：com.liu.service.HelloServiceMock"-->
+<dubbo:reference id ="helloService" interface="com.liu.service.HelloService"/>
+</beans> 
