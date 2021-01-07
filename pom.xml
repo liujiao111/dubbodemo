@@ -12,6 +12,12 @@
     <module>service-api</module>
     <module>service-provider</module>
     <module>service-consumer</module>
+      <module>java-spi-api</module>
+    <module>java-spi-impl</module>
+    <module>java-spi-main</module>
+      <module>dubbo-filter</module>
+      <module>dubbo-spi-loadbalance</module>
+      <module>thread-polol-watcher</module>
   </modules>
 
   <properties>

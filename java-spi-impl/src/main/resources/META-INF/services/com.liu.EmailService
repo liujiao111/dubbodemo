@@ -1,0 +1,2 @@
+email1=com.liu.service.impl.EmailServiceImpl
+email2=com.liu.service.impl.Email2ServiceImpl
